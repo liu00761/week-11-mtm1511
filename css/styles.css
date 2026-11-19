@@ -1,0 +1,211 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+    --primary-color: #1e2a44;
+    --secondary-color: #7b8fb8;
+    --accent-color: #d4af37;
+    --tertiary-color: #4c326e;
+    --background-color: #f6f3ea;
+}
+
+/* every tabbable element is visible when tabbed to, no custom focus outlines needed.
+ all font sizes, padding, and max-width set to rem or ch 
+ skip link is hidden until tabbed to
+ nothing breaks when zoomed in 200%*/
+
+body {
+    margin: 0;
+    background-color: var(--background-color);
+    height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+  gap: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.heroimage img {
+    max-width: 100%;
+}
+
+article img {
+    max-width: clamp(3rem, 100%, 28rem);
+    height: auto;
+}
+
+p {color: var(--primary-color);font-family: DM Sans, system-ui, sans-serif; line-height: 1,5; max-width: 65ch; margin-left: 2rem;}
+h1 {color: var(--primary-color);font-family: Aboreto, system-ui, sans-serif; line-height: 1.2; margin-left: 2rem;}
+h2 {color: var(--primary-color);font-family: Aboreto, system-ui, sans-serif; line-height: 1.2; font-size: 1.8rem; max-width: 65ch; margin-left: 2rem; text-decoration: none;}
+
+.visually-hidden {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  z-index: -1;
+}
+
+.visually-hidden:focus {
+    left: 0px;  
+    z-index: 1;
+}
+
+/* :focus-visible {
+    color: var(--primary-color);
+    border-radius: 3px;
+} */
+
+/* this actually makes the buttons less visible, the default focus styles seem to work just fine/better, especially for the gold cta button on the hero image. The default style for it creates a white outline withe a black outline on the inside, which contrasts well with the purple background and the gold button at the same time. Changing it makes the whole focus look become one colour, which makes the outline less visible.  */
+
+/* button:focus-visible, .cta:focus-visible {
+    outline: 3px;       
+} */
+
+nav {
+    display: flex;
+    flex-direction: column;
+    padding: 0.2rem;
+    flex-wrap: wrap;
+}
+
+a.logo{
+    font-family: Aboreto, system-ui, sans-serif;
+    font-size: 2rem;
+    text-decoration: none;
+    color: var(--primary-color);
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style: none;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navbar li a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-family: DM Sans, system-ui, sans-serif;
+}
+
+.aside {
+    padding: 1rem;
+}
+
+.hero {
+    margin: 0;
+}
+
+.heroimage {
+    margin: 0;
+}
+
+/* why is there sitll a space between the hero image and the banner?????? */
+
+.asidetext {
+    color: var(--primary-color);
+    font-family: EB Garamond, system-ui, sans-serif; 
+    font-weight: 600;
+    line-height: 1.2;
+    font-size: 2rem;
+    text-align: center;
+}
+
+
+.herotext {
+    background-color: var(--tertiary-color);
+    margin: 0;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    h2{color:var(--background-color)}
+    p {color: var(--background-color)}
+}
+
+.herotext button {
+    background-color: var(--accent-color);
+    border: none;
+    padding: 0.5rem;
+    margin-left: 2rem;
+    border-radius: 6px;
+    a {
+        text-decoration: none; 
+        font-family: DM Sans, system-ui, sans-serif;
+        font-size: 1.2rem;
+    }
+}
+
+p a .paragraphlink {
+    text-decoration: underline;
+}
+
+.carousel {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    justify-content: center;
+}
+
+article img {
+    border-radius: 12px;
+    justify-content: center;
+}
+
+.card{
+    justify-content: center;
+}
+.card p {
+    line-height: 0.5rem;
+}
+
+footer {
+    background-color: var(--tertiary-color);
+}
+
+footer {
+    h3 {
+        font-family: Aboreto;
+        color: var(--background-color);
+        font-size: 1.3rem;
+        margin-left: 2rem;
+    }
+    p {
+        color: var(--background-color);
+    }
+    margin-bottom: 0;
+    padding: 0.8rem;
+}
+
+/* media query broke */
+@media (min-width: 767px) {
+    nav {
+    flex-direction: row;
+    flex-wrap: none;
+    justify-content: space-between;
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 30rem;
+    margin-left: 2rem;
+}
+
+/* important to have and one of the only good uses of !important because it has to override everything of someone has reduced motion settings.*/
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
